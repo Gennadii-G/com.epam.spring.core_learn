@@ -1,6 +1,7 @@
 package main;
 
 import main.beans.Client;
+import main.beans.Event;
 import main.entity.ConsoleEventLogger;
 import main.entity.EventLogger;
 import org.springframework.context.ApplicationContext;
@@ -24,13 +25,13 @@ public class App {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
 
         App app = (App) ctx.getBean("app");
+        Event event = (Event) ctx.getBean("event");
 
-        app.logEvant("Some event for user 1");
-        app.logEvant("Some event for user 2");
+        app.logEvant(event, "Some event for user 1");
     }
 
-    private void logEvant(String msg){
-        String message = msg.replaceAll(client.getId(), client.getFullName());
-        eventLogger.logEvent(message);
+    private void logEvant(Event event, String msg){
+        event.setMsg(msg.replaceAll(client.getId(), client.getFullName()));
+        eventLogger.logEvent(event);
     }
 }
