@@ -28,9 +28,7 @@ public class Event {
 
     @Override
     public String toString(){
-        String s = "id - " + id + " \n" +
-                "date - " + df.format(date) + " \n" +
-                "mesage - " + msg;
+        String s =  id + " \n" + df.format(date) + " \n" + msg;
         return s;
     }
 

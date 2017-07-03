@@ -12,6 +12,16 @@
 
     <bean id="eventLogger" class="main.entity.ConsoleEventLogger"/>
 
+    <bean id="fileEventLogger" class="main.entity.FileEventLogger" init-method="init">
+        <constructor-arg value="src\main\save_files\log.txt"/>
+    </bean>
+
+    <bean id="cacheFileEventLogger" class="main.entity.CacheFileEventLogger"
+          destroy-method="destroy">
+        <constructor-arg value="src\main\save_files\log.txt"/>
+        <constructor-arg value="5"/>
+    </bean>
+
     <bean id="app" class="main.App">
         <constructor-arg ref="client"/>
         <constructor-arg ref="eventLogger"/>
@@ -22,7 +32,8 @@
             <bean class="java.util.Date"/>
         </constructor-arg>
         <constructor-arg>
-            <bean id="dateFormat" class="java.text.DateFormat" factory-method="getDateTimeInstance" />
+            <bean id="dateFormat" class="java.text.DateFormat"
+                  factory-method="getDateTimeInstance" />
         </constructor-arg>
     </bean>
 
