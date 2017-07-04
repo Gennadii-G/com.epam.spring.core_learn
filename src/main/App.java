@@ -30,8 +30,8 @@ public class App {
         Event event;
         for(int i = 0; i < 4; i++) {
             event = ctx.getBean(Event.class);
-            app.logEvent(event, "Some event for " + i);
-            System.out.println("something OK");
+            app.logEvent(event, "Some event for " + i + "\n");
+            System.out.println("note wrote");
         }
 
         ctx.close();
