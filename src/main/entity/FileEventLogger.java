@@ -12,7 +12,7 @@ import java.io.IOException;
 public class FileEventLogger implements EventLogger{
 
     public FileEventLogger(String filename) {
-        this.file = new File(filename);
+        this.filename = filename;
     }
 
     private String filename;
@@ -27,6 +27,7 @@ public class FileEventLogger implements EventLogger{
     }
 
     public void init() throws IOException {
+        this.file = new File(filename);
         if(file.exists() && !file.canWrite()){
             throw new IllegalArgumentException("I can't write file " + filename);
         }else if(!file.exists()){

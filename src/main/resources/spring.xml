@@ -4,21 +4,11 @@
        xsi:schemaLocation="
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+    <import resource="loggers.xml"/>
 
     <bean id="client" class="main.beans.Client">
         <constructor-arg value="1"/>
         <constructor-arg value="john Smith"/>
-    </bean>
-
-    <bean id="eventLogger" class="main.entity.ConsoleEventLogger"/>
-
-    <bean id="fileEventLogger" class="main.entity.FileEventLogger" init-method="init">
-        <constructor-arg value="src\main\save_files\log.txt"/>
-    </bean>
-
-    <bean id="cacheFileEventLogger" class="main.entity.CacheFileEventLogger" destroy-method="destroy">
-        <constructor-arg value="src/main/save_files/log.txt"/>
-        <constructor-arg value="5"/>
     </bean>
 
     <bean id="app" class="main.App">
