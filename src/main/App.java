@@ -13,13 +13,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App {
 
-    public App(Client client, EventLogger eventLogger){
+    public App(Client client, CacheFileEventLogger CFELogger){
+        super();
         this.client = client;
-        this.eventLogger = eventLogger;
+        this.CFELogger = CFELogger;
     }
 
     private Client client;
-    private EventLogger eventLogger;
+    private CacheFileEventLogger CFELogger;
 
     public static void main(String[] arg){
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext("spring.xml");
@@ -38,6 +39,6 @@ public class App {
 
     private void logEvent(Event event, String msg){
         event.setMsg(msg.replaceAll(client.getId(), client.getFullName()));
-        eventLogger.logEvent(event);
+        CFELogger.logEvent(event);
     }
 }

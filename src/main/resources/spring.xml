@@ -16,15 +16,14 @@
         <constructor-arg value="src\main\save_files\log.txt"/>
     </bean>
 
-    <bean id="cacheFileEventLogger" class="main.entity.CacheFileEventLogger"
-          destroy-method="destroy">
-        <constructor-arg value="src\main\save_files\log.txt"/>
+    <bean id="cacheFileEventLogger" class="main.entity.CacheFileEventLogger" destroy-method="destroy">
+        <constructor-arg value="src/main/save_files/log.txt"/>
         <constructor-arg value="5"/>
     </bean>
 
     <bean id="app" class="main.App">
         <constructor-arg ref="client"/>
-        <constructor-arg ref="eventLogger"/>
+        <constructor-arg ref="cacheFileEventLogger"/>
     </bean>
 
     <bean id="event" class="main.beans.Event" scope="prototype">

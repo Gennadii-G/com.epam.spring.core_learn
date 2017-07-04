@@ -1,7 +1,9 @@
 package main.entity;
 
 import main.beans.Event;
+import org.apache.commons.io.FileUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,9 +38,13 @@ public class CacheFileEventLogger extends FileEventLogger {
     }
 
     private void writeEventsFromCache() {
-        for(Event e : cache){
+//        cache.stream().forEach(super::logEvent);
 
+        for(Event eve : cache){
+            super.logEvent(eve);
         }
+
+
     }
 
 }
