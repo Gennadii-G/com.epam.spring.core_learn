@@ -1,20 +1,27 @@
-package main.entity;
+package main.loggers;
 
 import main.beans.Event;
+import main.entity.EventLogger;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 
 /**
  * Created by Gennadii_Borodin on 7/3/2017.
  */
-public class FileEventLogger implements EventLogger{
+
+@Component
+public class FileEventLogger implements EventLogger {
 
     public FileEventLogger(String filename) {
         this.filename = filename;
     }
 
+    @Value("main/save_files/log.txt")
     private String filename;
     private File file;
 
@@ -26,6 +33,7 @@ public class FileEventLogger implements EventLogger{
         }
     }
 
+    @PostConstruct
     public void init() throws IOException {
         this.file = new File(filename);
         if(file.exists() && !file.canWrite()){

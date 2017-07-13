@@ -1,4 +1,4 @@
-package main.entity;
+package main.beans;
 
 /**
  * Created by Gennadii_Borodin on 7/4/2017.

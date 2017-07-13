@@ -5,11 +5,6 @@ package main.beans;
  */
 public class Client {
 
-    public Client(String id, String fullName) {
-        this.id = id;
-        this.fullName = fullName;
-    }
-
     private String id;
     private String fullName;
     private String greeting;

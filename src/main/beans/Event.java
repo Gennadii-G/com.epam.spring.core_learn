@@ -1,13 +1,27 @@
 package main.beans;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
-/**
- * Created by Gennadii_Borodin on 6/30/2017.
- */
+@Component
+@Scope("prototype")
 public class Event {
+
+    private int id;
+    private String msg;
+
+    @Autowired
+    @Qualifier("newDate")
+    private Date date;
+
+    @Autowired
+    private DateFormat df;
 
     public Event(){
         Random random = new Random();
@@ -20,11 +34,6 @@ public class Event {
         this.date = date;
         this.df = df;
     }
-
-    private int id;
-    private String msg;
-    private Date date;
-    private DateFormat df;
 
     @Override
     public String toString(){

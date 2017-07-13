@@ -5,18 +5,18 @@
  		http://www.springframework.org/schema/beans
  		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    <bean id="consoleEventLogger" class="main.entity.ConsoleEventLogger"/>
+    <bean id="consoleEventLogger" class="main.loggers.ConsoleEventLogger"/>
 
-    <bean id="fileEventLogger" class="main.entity.FileEventLogger" init-method="init">
+    <bean id="fileEventLogger" class="main.loggers.FileEventLogger" init-method="init">
         <constructor-arg value="src\main\save_files\log.txt"/>
     </bean>
 
-    <bean id="cacheFileEventLogger" class="main.entity.CacheFileEventLogger"
+    <bean id="cacheFileEventLogger" class="main.loggers.CacheFileEventLogger"
           destroy-method="destroy" parent="fileEventLogger">
         <constructor-arg index="1" value="5"/>
     </bean>
 
-    <bean id="combinedEventLogger" class="main.entity.CombinedEventLogger">
+    <bean id="combinedEventLogger" class="main.loggers.CombinedEventLogger">
         <constructor-arg>
             <list>
                 <ref bean="consoleEventLogger"/>
