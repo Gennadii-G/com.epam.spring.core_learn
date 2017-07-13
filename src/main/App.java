@@ -22,7 +22,7 @@ public class App {
     private Client client;
 
     @Resource(name = "defaultLogger")
-    private EventLogger defaultlooger;
+    private EventLogger defaultLogger;
 
     @Resource(name = "loggerMap")
     private Map<EventType, EventLogger> loggers;
@@ -52,7 +52,7 @@ public class App {
 
     public App(Client client, EventLogger defaultlooger, Map<EventType, EventLogger> loggers){
         this.client = client;
-        this.defaultlooger = defaultlooger;
+        this.defaultLogger = defaultlooger;
         this.loggers = loggers;
     }
 
@@ -62,9 +62,9 @@ public class App {
 
         EventLogger logger = loggers.get(eventType);
         if(logger == null){
-            logger = defaultlooger;
+            logger = defaultLogger;
         }
 
-        defaultlooger.logEvent(event);
+        defaultLogger.logEvent(event);
     }
 }
