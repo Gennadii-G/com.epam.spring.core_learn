@@ -14,7 +14,6 @@ import java.io.IOException;
  * Created by Gennadii_Borodin on 7/3/2017.
  */
 
-@Component
 public class FileEventLogger implements EventLogger {
 
 //    public FileEventLogger(String filename) {
@@ -24,12 +23,10 @@ public class FileEventLogger implements EventLogger {
     public FileEventLogger() {
     }
 
-    @Bean
     public static FileEventLogger fileEventLogger(){
         return new FileEventLogger();
     }
 
-    @Value("test.txt")
     private String filename;
     private File file;
 
@@ -41,7 +38,6 @@ public class FileEventLogger implements EventLogger {
         }
     }
 
-    @PostConstruct
     public void init() throws IOException {
         System.out.println("PostConstruct FileEvent Work | " + "filename: " + filename);
         this.file = new File(filename);

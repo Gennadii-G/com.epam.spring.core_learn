@@ -11,16 +11,13 @@ import java.util.Collection;
  * Created by Gennadii_Borodin on 7/4/2017.
  */
 
-@Component
 public class CombinedEventLogger implements EventLogger {
 
-    @Resource(name = "combinedLoggers")
     private Collection<EventLogger> loggers;
 
     public CombinedEventLogger() {
     }
 
-    @Bean
     public static CombinedEventLogger combinedEventLogger(){
         return new CombinedEventLogger();
     }

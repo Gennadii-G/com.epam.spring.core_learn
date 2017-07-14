@@ -17,16 +17,12 @@ import java.util.Map;
 
 
 
-@Service
 public class App {
 
-    @Autowired
     private Client client;
 
-    @Resource(name = "defaultLogger")
     private EventLogger defaultLogger;
 
-    @Resource(name = "loggerMap")
     private Map<EventType, EventLogger> loggers;
 
     public static void main(String[] arg){
@@ -57,7 +53,6 @@ public class App {
 
     public App(){}
 
-    @Bean
     public static App app(){
         return new App();
     }
@@ -74,4 +69,5 @@ public class App {
 
         defaultLogger.logEvent(event);
     }
+//    https://github.com/yuriytkach
 }

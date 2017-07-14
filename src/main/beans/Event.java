@@ -10,18 +10,11 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.Random;
 
-@Component
-@Scope("prototype")
 public class Event {
 
     private int id;
     private String msg;
-
-    @Autowired
-    @Qualifier("newDate")
     private Date date;
-
-    @Autowired
     private DateFormat df;
 
     public Event(){
@@ -36,12 +29,10 @@ public class Event {
         this.df = df;
     }
 
-    @Bean
     public static Event event(){
         return new Event();
     }
 
-    @Override
     public String toString(){
         String s =  id + " \n" + df.format(date) + " \n" + msg;
         return s;

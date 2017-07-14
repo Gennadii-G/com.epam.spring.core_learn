@@ -14,7 +14,6 @@ public class ConsoleEventLogger implements EventLogger {
     public ConsoleEventLogger() {
     }
 
-    @Bean
     public static ConsoleEventLogger consoleEventLogger(){
         return new ConsoleEventLogger();
     }

@@ -14,22 +14,19 @@ import java.util.List;
  * Created by Gennadii_Borodin on 7/3/2017.
  */
 
-@Component
+
 public class CacheFileEventLogger extends FileEventLogger {
 
-    @Value("${cache.size:5}")
     private int cacheSize;
     private List<Event> cache;
 
     public CacheFileEventLogger() {
     }
 
-    @Bean
     public static CacheFileEventLogger cacheEventLogger(){
         return new CacheFileEventLogger();
     }
 
-    @Override
     public void logEvent(Event event){
         cache.add(event);
 
@@ -39,12 +36,10 @@ public class CacheFileEventLogger extends FileEventLogger {
         }
     }
 
-    @PostConstruct
     public void initCache() {
         this.cache = new ArrayList<Event>(cacheSize);
     }
 
-    @PreDestroy
     public void destroy(){
         if(!cache.isEmpty()){
             System.out.println("PreDestroy Work | Notes save in file | cacheSize: " + cache.size());
