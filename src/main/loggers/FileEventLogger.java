@@ -16,19 +16,12 @@ import java.io.IOException;
 
 public class FileEventLogger implements EventLogger {
 
-//    public FileEventLogger(String filename) {
-//        this.filename = filename;
-//    }
-
-    public FileEventLogger() {
-    }
-
-    public static FileEventLogger fileEventLogger(){
-        return new FileEventLogger();
-    }
-
     private String filename;
     private File file;
+
+    public FileEventLogger(String filename) {
+        this.filename = filename;
+    }
 
     public void logEvent(Event event) {
         try {

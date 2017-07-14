@@ -20,11 +20,10 @@ public class CacheFileEventLogger extends FileEventLogger {
     private int cacheSize;
     private List<Event> cache;
 
-    public CacheFileEventLogger() {
-    }
-
-    public static CacheFileEventLogger cacheEventLogger(){
-        return new CacheFileEventLogger();
+    public CacheFileEventLogger(String filename, int cacheSize) {
+        super(filename);
+        this.cacheSize = cacheSize;
+        this.cache = new ArrayList<Event>(cacheSize);
     }
 
     public void logEvent(Event event){
@@ -42,16 +41,12 @@ public class CacheFileEventLogger extends FileEventLogger {
 
     public void destroy(){
         if(!cache.isEmpty()){
-            System.out.println("PreDestroy Work | Notes save in file | cacheSize: " + cache.size());
             writeEventsFromCache();
         }
     }
 
     private void writeEventsFromCache() {
-//        cache.stream().forEach(super::logEvent);
-
         for(Event eve : cache){
-            System.out.println("[ OK ]");
             super.logEvent(eve);
         }
 
