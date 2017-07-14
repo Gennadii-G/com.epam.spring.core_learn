@@ -29,7 +29,7 @@ public class FileEventLogger implements EventLogger {
         return new FileEventLogger();
     }
 
-    @Value("main.save_files.test.txt")
+    @Value("test.txt")
     private String filename;
     private File file;
 
@@ -45,6 +45,7 @@ public class FileEventLogger implements EventLogger {
     public void init() throws IOException {
         System.out.println("PostConstruct FileEvent Work | " + "filename: " + filename);
         this.file = new File(filename);
+        System.out.println(this.file.getAbsolutePath());
         if(file.exists() && !file.canWrite()){
             throw new IllegalArgumentException("I can't write file " + filename);
         }else if(!file.exists()){

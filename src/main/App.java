@@ -1,5 +1,6 @@
 package main;
 
+import com.sun.org.apache.xpath.internal.SourceTree;
 import main.beans.Client;
 import main.beans.Event;
 import main.loggers.EventLogger;
@@ -37,15 +38,18 @@ public class App {
         App app = (App) ctx.getBean("app");
 
         Event event = ctx.getBean(Event.class);
-        app.logEvent(EventType.INFO, event, "Some event for 1" + " " + app.client.getGreeting() +  "\n");
+        app.logEvent(EventType.INFO, event,
+                "Some event for 1" + " " + app.client.getGreeting() +  "\n");
         System.out.println("note wrote");
 
         event = ctx.getBean(Event.class);
-        app.logEvent(EventType.ERROR, event, "Some event for 2" + " " + app.client.getGreeting() +  "\n");
+        app.logEvent(EventType.ERROR, event,
+                "Some event for 2" + " " + app.client.getGreeting() +  "\n");
         System.out.println("note wrote");
 
         event = ctx.getBean(Event.class);
-        app.logEvent(null, event, "Some event for 3" + " " + app.client.getGreeting() +  "\n");
+        app.logEvent(null, event,
+                "Some event for 3" + " " + app.client.getGreeting() +  "\n");
         System.out.println("note wrote");
 
         ctx.close();
@@ -60,6 +64,7 @@ public class App {
 
     private void logEvent(EventType eventType, Event event, String msg){
         String message = msg.replaceAll(client.getId(), client.getFullName());
+        System.out.println(message);
         event.setMsg(message);
 
         EventLogger logger = loggers.get(eventType);

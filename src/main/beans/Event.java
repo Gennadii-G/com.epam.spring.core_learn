@@ -2,6 +2,7 @@ package main.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -33,6 +34,11 @@ public class Event {
         id = random.nextInt(50);
         this.date = date;
         this.df = df;
+    }
+
+    @Bean
+    public static Event event(){
+        return new Event();
     }
 
     @Override
