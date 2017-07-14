@@ -2,6 +2,7 @@ package main.loggers;
 
 import main.beans.Event;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -20,9 +21,12 @@ public class CacheFileEventLogger extends FileEventLogger {
     private int cacheSize;
     private List<Event> cache;
 
-    public CacheFileEventLogger(String filename, int cacheSize) {
-        super(filename);
-        this.cacheSize = cacheSize;
+    public CacheFileEventLogger() {
+    }
+
+    @Bean
+    public static CacheFileEventLogger cacheEventLogger(){
+        return new CacheFileEventLogger();
     }
 
     @Override
@@ -43,6 +47,7 @@ public class CacheFileEventLogger extends FileEventLogger {
     @PreDestroy
     public void destroy(){
         if(!cache.isEmpty()){
+            System.out.println("PreDestroy Work | Notes save in file | cacheSize: " + cache.size());
             writeEventsFromCache();
         }
     }
@@ -51,6 +56,7 @@ public class CacheFileEventLogger extends FileEventLogger {
 //        cache.stream().forEach(super::logEvent);
 
         for(Event eve : cache){
+            System.out.println("[ OK ]");
             super.logEvent(eve);
         }
 

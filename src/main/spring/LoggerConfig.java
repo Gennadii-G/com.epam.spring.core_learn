@@ -1,7 +1,7 @@
 package main.spring;
 
 import main.beans.EventType;
-import main.entity.EventLogger;
+import main.loggers.EventLogger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
@@ -32,7 +32,7 @@ public class LoggerConfig {
     @Resource(name = "combinedEventLogger")
     private EventLogger combinedEventLogger;
 
-    @Resource(name = "cacheFileEventLogger")
+    @Resource(name = "cacheEventLogger")
     private EventLogger cacheEventLogger;
 
     @Bean

@@ -1,4 +1,4 @@
-package main.entity;
+package main.loggers;
 
 import main.beans.Event;
 

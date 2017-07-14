@@ -2,12 +2,13 @@ package main;
 
 import main.beans.Client;
 import main.beans.Event;
-import main.entity.EventLogger;
+import main.loggers.EventLogger;
 import main.beans.EventType;
 import main.spring.AppConfig;
 import main.spring.LoggerConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -50,10 +51,11 @@ public class App {
         ctx.close();
     }
 
-    public App(Client client, EventLogger defaultlooger, Map<EventType, EventLogger> loggers){
-        this.client = client;
-        this.defaultLogger = defaultlooger;
-        this.loggers = loggers;
+    public App(){}
+
+    @Bean
+    public static App app(){
+        return new App();
     }
 
     private void logEvent(EventType eventType, Event event, String msg){

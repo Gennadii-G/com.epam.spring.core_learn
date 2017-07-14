@@ -1,9 +1,9 @@
 package main.loggers;
 
 import main.beans.Event;
-import main.entity.EventLogger;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -17,11 +17,19 @@ import java.io.IOException;
 @Component
 public class FileEventLogger implements EventLogger {
 
-    public FileEventLogger(String filename) {
-        this.filename = filename;
+//    public FileEventLogger(String filename) {
+//        this.filename = filename;
+//    }
+
+    public FileEventLogger() {
     }
 
-    @Value("main/save_files/log.txt")
+    @Bean
+    public static FileEventLogger fileEventLogger(){
+        return new FileEventLogger();
+    }
+
+    @Value("main.save_files.test.txt")
     private String filename;
     private File file;
 
@@ -35,6 +43,7 @@ public class FileEventLogger implements EventLogger {
 
     @PostConstruct
     public void init() throws IOException {
+        System.out.println("PostConstruct FileEvent Work | " + "filename: " + filename);
         this.file = new File(filename);
         if(file.exists() && !file.canWrite()){
             throw new IllegalArgumentException("I can't write file " + filename);
