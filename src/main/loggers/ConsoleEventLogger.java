@@ -1,6 +1,7 @@
 package main.loggers;
 
 import main.beans.Event;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -9,15 +10,15 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class ConsoleEventLogger implements EventLogger {
+public class ConsoleEventLogger extends AbstractLogger {
 
-    public ConsoleEventLogger() {
+    @Value("#{'Console logger'}")
+    @Override
+    protected void setName(String name){
+
     }
 
-    public static ConsoleEventLogger consoleEventLogger(){
-        return new ConsoleEventLogger();
-    }
-
+    @Override
     public void logEvent(Event event){
         System.out.println(event.toString());
     }

@@ -14,27 +14,31 @@ import java.io.IOException;
  * Created by Gennadii_Borodin on 7/3/2017.
  */
 
-public class FileEventLogger implements EventLogger {
+@Component
+public class FileEventLogger extends AbstractLogger {
 
+    @Value("${events.file:target/events_log.txt}")
     private String filename;
     private File file;
+
+    public FileEventLogger() {}
 
     public FileEventLogger(String filename) {
         this.filename = filename;
     }
 
+    @Override
     public void logEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(file, event.getMsg(), true);
+            FileUtils.writeStringToFile(file, event.toString() +"\n", true);
         }catch(IOException e){
             e.printStackTrace();
         }
     }
 
+    @PostConstruct
     public void init() throws IOException {
-        System.out.println("PostConstruct FileEvent Work | " + "filename: " + filename);
         this.file = new File(filename);
-        System.out.println(this.file.getAbsolutePath());
         if(file.exists() && !file.canWrite()){
             throw new IllegalArgumentException("I can't write file " + filename);
         }else if(!file.exists()){
@@ -44,6 +48,12 @@ public class FileEventLogger implements EventLogger {
                 throw new IllegalArgumentException("I can't create file " + filename);
             }
         }
+    }
+
+    @Value("File logger")
+    @Override
+    protected void setName(String name) {
+        this.name = name;
     }
 
 }

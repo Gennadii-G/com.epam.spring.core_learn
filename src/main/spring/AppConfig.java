@@ -21,16 +21,6 @@ public class AppConfig {
     private Environment environment;
 
     @Bean
-    public Date newDate() {
-        return new Date();
-    }
-
-    @Bean
-    public DateFormat dateFormat() {
-        return DateFormat.getDateTimeInstance();
-    }
-
-    @Bean
     public Client client() {
         Client client = new Client();
         client.setId(environment.getRequiredProperty("id"));

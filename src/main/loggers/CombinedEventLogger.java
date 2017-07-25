@@ -1,30 +1,45 @@
 package main.loggers;
 
 import main.beans.Event;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by Gennadii_Borodin on 7/4/2017.
  */
 
-public class CombinedEventLogger implements EventLogger {
+@Component
+public class CombinedEventLogger extends AbstractLogger{
 
+    @Resource(name = "combinedLoggers")
     private Collection<EventLogger> loggers;
 
     public CombinedEventLogger() {
     }
 
-    public static CombinedEventLogger combinedEventLogger(){
-        return new CombinedEventLogger();
-    }
+//    public static CombinedEventLogger combinedEventLogger(){
+//        return new CombinedEventLogger();
+//    }
 
+    @Override
     public void logEvent(Event event) {
         for (EventLogger eventLogger : loggers) {
             eventLogger.logEvent(event);
         }
+    }
+
+    public Collection<EventLogger> getLoggers() {
+        return Collections.unmodifiableCollection(loggers);
+    }
+
+    @Value("#{'Combined ' + combinedEventLogger.loggers.![name].toString()}")
+    @Override
+    protected void setName(String name) {
+        this.name = name;
     }
 }
