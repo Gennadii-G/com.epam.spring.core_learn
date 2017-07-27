@@ -2,9 +2,6 @@ package main.beans;
 
 import org.springframework.stereotype.Component;
 
-/**
- * Created by Gennadii_Borodin on 6/28/2017.
- */
 
 @Component
 public class Client {

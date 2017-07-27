@@ -17,6 +17,6 @@ public class ConsoleEventLogger extends AbstractLogger {
 
     @Override
     protected void setName(String name) {
-
+        this.name = name;
     }
 }

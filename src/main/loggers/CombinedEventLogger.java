@@ -30,7 +30,7 @@ public class CombinedEventLogger extends AbstractLogger {
 
     @Override
     protected void setName(String name) {
-
+        this.name = name;
     }
 
     public Collection<EventLogger> getLoggers() {
