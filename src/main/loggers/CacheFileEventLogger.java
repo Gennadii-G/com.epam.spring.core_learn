@@ -35,6 +35,11 @@ public class CacheFileEventLogger extends FileEventLogger {
         }
     }
 
+    @Override
+    protected void setName(String name) {
+        super.setName(name);
+    }
+
     public void destroy(){
         if(!cache.isEmpty()){
             writeEventsFromCache();

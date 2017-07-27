@@ -28,6 +28,11 @@ public class CombinedEventLogger extends AbstractLogger {
         }
     }
 
+    @Override
+    protected void setName(String name) {
+
+    }
+
     public Collection<EventLogger> getLoggers() {
         return Collections.unmodifiableCollection(loggers);
     }

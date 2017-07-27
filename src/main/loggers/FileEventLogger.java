@@ -31,6 +31,11 @@ public class FileEventLogger extends AbstractLogger {
         }
     }
 
+    @Override
+    protected void setName(String name) {
+        this.name = name;
+    }
+
     public void init() throws IOException {
         System.out.println("PostConstruct FileEvent Work | " + "filename: " + filename);
         this.file = new File(filename);
