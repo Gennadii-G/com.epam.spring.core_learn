@@ -22,7 +22,7 @@ public class AppConfig {
 
     @Bean
     public Client client() {
-        Client client = new Client();
+        Client client = new Client("", "");
         client.setId(environment.getRequiredProperty("id"));
         client.setFullName(environment.getRequiredProperty("name"));
         client.setGreeting(environment.getProperty("greeting"));

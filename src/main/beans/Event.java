@@ -2,26 +2,19 @@ package main.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.text.DateFormat;
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.Random;
 
-
-@Component
-@Scope("prototype")
 public class Event {
 
     private int id;
     private String msg;
-    @Value("#{new java.util.Date()}")
     private Date date;
-    @Value("#{T(java.text.DateFormat).getDateTimeInstance()}")
     private DateFormat df;
 
     public Event(){
@@ -29,17 +22,16 @@ public class Event {
         id = random.nextInt(50);
     }
 
-    public static boolean isDay(int start, int end){
-        LocalTime time = LocalTime.now();
-        return time.getHour() > start && time.getHour() < end;
+    public Event(Date date, DateFormat df){
+        Random random = new Random();
+        id = random.nextInt(50);
+        this.date = date;
+        this.df = df;
     }
 
-//    public Event(Date date, DateFormat df){
-//        Random random = new Random();
-//        id = random.nextInt(50);
-//        this.date = date;
-//        this.df = df;
-//    }
+    public static Event event(){
+        return new Event();
+    }
 
     public String toString(){
         String s =  id + " \n" + df.format(date) + " \n" + msg;
