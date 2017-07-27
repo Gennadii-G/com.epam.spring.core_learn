@@ -14,7 +14,7 @@ import java.io.IOException;
  * Created by Gennadii_Borodin on 7/3/2017.
  */
 
-public class FileEventLogger implements EventLogger {
+public class FileEventLogger extends AbstractLogger {
 
     private String filename;
     private File file;
@@ -25,7 +25,7 @@ public class FileEventLogger implements EventLogger {
 
     public void logEvent(Event event) {
         try {
-            FileUtils.writeStringToFile(file, event.getMsg(), true);
+            FileUtils.writeStringToFile(file, event.getMsg() + "\n", true);
         }catch(IOException e){
             e.printStackTrace();
         }
@@ -34,7 +34,6 @@ public class FileEventLogger implements EventLogger {
     public void init() throws IOException {
         System.out.println("PostConstruct FileEvent Work | " + "filename: " + filename);
         this.file = new File(filename);
-        System.out.println(this.file.getAbsolutePath());
         if(file.exists() && !file.canWrite()){
             throw new IllegalArgumentException("I can't write file " + filename);
         }else if(!file.exists()){

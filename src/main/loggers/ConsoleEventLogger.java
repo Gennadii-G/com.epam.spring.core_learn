@@ -9,14 +9,7 @@ import org.springframework.stereotype.Component;
  */
 
 @Component
-public class ConsoleEventLogger implements EventLogger {
-
-    public ConsoleEventLogger() {
-    }
-
-    public static ConsoleEventLogger consoleEventLogger(){
-        return new ConsoleEventLogger();
-    }
+public class ConsoleEventLogger extends AbstractLogger {
 
     public void logEvent(Event event){
         System.out.println(event.toString());
