@@ -35,10 +35,6 @@ public class CacheFileEventLogger extends FileEventLogger {
         }
     }
 
-    public void initCache() {
-        this.cache = new ArrayList<Event>(cacheSize);
-    }
-
     public void destroy(){
         if(!cache.isEmpty()){
             writeEventsFromCache();
@@ -49,8 +45,5 @@ public class CacheFileEventLogger extends FileEventLogger {
         for(Event eve : cache){
             super.logEvent(eve);
         }
-
-
     }
-
 }
